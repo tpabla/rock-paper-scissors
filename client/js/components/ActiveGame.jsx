@@ -12,6 +12,7 @@ ActiveGame = React.createClass({
     },
 
     render() {
+      nickname = Session.get('nickname');
       if (this.props.activeGame !== undefined && this.props.activeGame._id !== Session.get('curr_game_id')) {
         return (
           <div className = "active-game">
@@ -28,7 +29,7 @@ ActiveGame = React.createClass({
             </div>
           </div>
         );
-      } else if (this.props.lastGame.active === false) {
+      } else if (this.props.lastGame.active === false && this.props.lastGame.winner === null) {
         return (
           <div className = "active-game">
             <div className = "winner">
