@@ -3,20 +3,25 @@ LandingPage = React.createClass({
       return {};
     },
 
+    enterGame(playerNum) {
+      return this.props.enterGame(playerNum);
+    },
+
     render() {
       var mainpage;
-      console.log(this.props.activeGame);
       if (this.props.activeGame !== undefined) {
-        mainpage = <button onClick = {this.props.enterGame}> Join Active Game </button>;
+        mainpage = <button onClick = {this.enterGame.bind(this, 2)}> Join Active Game </button>;
       }else {
-        mainpage = <button onClick = {this.props.enterGame}> Start New Game </button>;
+        mainpage = <button onClick = {this.enterGame.bind(this, 1)}> Start New Game </button>;
       }
       
       return (
         <div className = 'landing-page'>
-          <h3>Welcome to the one and only destination on the web to play realtime Rock Paper Scissors!</h3>
-          {mainpage}
-          <h4> All Games </h4>
+          <div className = 'game-enter'>
+            <h3>Welcome to the one and only destination on the web to play realtime Rock Paper Scissors!</h3>
+            {mainpage}
+          </div>
+          <CurrentGame game = {this.props.lastGame} activeGame = {this.props.activeGame} />
         </div>
       );
     }
