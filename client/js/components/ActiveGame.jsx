@@ -28,6 +28,22 @@ ActiveGame = React.createClass({
             </div>
           </div>
         );
+      } else if (this.props.lastGame.active === false) {
+        return (
+          <div className = "active-game">
+            <div className = "winner">
+              <div className = "header">
+                <h1> Game Over </h1>
+              </div>
+              <div className = "content">
+                <p> Current Game Ended </p>
+              </div>
+              <div className = "bottom-button">
+                <Link to="/"><button>Go Home</button></Link>
+              </div>
+            </div>
+          </div>
+        );
       } else {
 
         nickname = Session.get('nickname');

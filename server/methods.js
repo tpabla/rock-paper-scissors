@@ -117,10 +117,6 @@ Meteor.methods({
       return false
     }
     
-      
-
-
-
     game = Games.findOne({"_id": id});
     return true;
   }
