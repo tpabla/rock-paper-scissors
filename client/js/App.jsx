@@ -44,8 +44,9 @@ App = React.createClass({
             } else {
               route = '/player2';
             }
-            this.props.history.pushState(null, route);
           }
+
+          this.props.history.pushState(null, route);
         });
 
       } else { 
@@ -62,11 +63,11 @@ App = React.createClass({
               console.log(err);
             }
             if (result) {
-              console.log(this.data.activeGame);
+              console.log(result);
               console.log(Session.get('nickname'));
-              if (Session.get('nickname') === this.data.activeGame.player1.name) {
+              if (Session.get('nickname') === result.player1.name) {
                 this.props.history.pushState(null, '/player1');
-              } else if (Session.get('nickname') === this.data.activeGame.player2.name) {
+              } else if (Session.get('nickname') === result.player2.name) {
                 this.props.history.pushState(null, '/player2');
               } else {
                 this.props.history.pushState(null, '/');

@@ -38,12 +38,13 @@ Meteor.methods({
     if (playerNum !== null) {
       if (playerNum == 1 && activeGame.player1.name === null) {
         console.log('setting player 1 with player num');
-        return Games.update({"_id": id}, {"$set": {"player1.name": nickname}});
+        Games.update({"_id": id}, {"$set": {"player1.name": nickname}});
       } else if (playerNum == 2 && activeGame.player2.name === null) {
         console.log('setting player 2 with player num');
-        return Games.update({"_id": id}, {"$set": {"player2.name": nickname}});
+        Games.update({"_id": id}, {"$set": {"player2.name": nickname}});
       } else {
         throw new Meteor.Error(415, "Invalid Player");
+        return null;
       }
     } else {
       if (activeGame.player1.name === null) {
@@ -51,11 +52,13 @@ Meteor.methods({
         return Games.update({"_id": id}, {"$set": {"player1.name": nickname}});
       } else if (activeGame.player2.name === null) {
         console.log('setting player 2');
-        return Games.update({"_id": id}, {"$set": {"player2.name": nickname}});
+        Games.update({"_id": id}, {"$set": {"player2.name": nickname}});
       } else {
         throw new Meteor.Error(409, "Game active, nickname invalid");
+        return null;
       }
     }
+    return Games.findOne({"_id": id});
 
   },
   
